@@ -11,7 +11,7 @@ if (missing.length) {
 }
 
 const args = [
-  "vercel", "deploy", "--prod", "--yes",
+  "--yes", "vercel@latest", "deploy", "--prod", "--yes",
   "--token", env.VERCEL_TOKEN,
   "--build-env", `DATABASE_URL=${env.DATABASE_URL}`,
   "--env", `DATABASE_URL=${env.DATABASE_URL}`,
