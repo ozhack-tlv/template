@@ -43,3 +43,7 @@ next-env.d.ts
 
 # secrets: Claude Code API key (per team, never commit)
 .claude/settings.local.json
+
+# Team deploy key (per-team, never commit)
+.deploy-key
+.deploy-key.pub

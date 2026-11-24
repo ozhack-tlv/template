@@ -14,10 +14,13 @@
       "Bash(git push)",
       "Bash(git push origin main)",
       "Bash(git config user.name *)",
-      "Bash(git config user.email *)"
+      "Bash(git config user.email *)",
+      "Bash(chmod 600 .deploy-key)",
+      "Bash(git config core.sshCommand *)"
     ],
     "deny": [
       "Read(./.env.local)",
+      "Read(./.deploy-key)",
       "Bash(git push --force *)",
       "Bash(git push -f *)",
       "Bash(git reset --hard *)",

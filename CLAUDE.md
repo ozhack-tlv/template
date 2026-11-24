@@ -35,7 +35,7 @@ They work only in this chat (the Claude app's Code tab). You run every command y
 - `db/001_guestbook.sql` and `src/app/guestbook` are a connection test. They can be deleted once the real app works (to remove the table, add a new file with `drop table if exists guestbook;`).
 
 ## Secrets: never break these rules
-- Never read, print, copy or commit `.env.local`. Never ask the students for keys or passwords, and never paste one into the chat or the code.
+- Never read, print, copy or commit `.env.local` or `.deploy-key`. Never ask the students for keys or passwords, and never paste one into the chat or the code.
 - Never write a key, token, password or connection string into source code. Use `process.env`.
 - `DATABASE_URL` must never reach the browser: never prefix it with `NEXT_PUBLIC_`.
 
