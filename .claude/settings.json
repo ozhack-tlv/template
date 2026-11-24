@@ -16,7 +16,12 @@
       "Bash(git config user.name *)",
       "Bash(git config user.email *)",
       "Bash(chmod 600 .deploy-key)",
-      "Bash(git config core.sshCommand *)"
+      "Bash(git config core.sshCommand *)",
+      "Bash(git init -b main)",
+      "Bash(git remote add origin *)",
+      "Bash(git fetch origin main)",
+      "Bash(git reset origin/main)",
+      "Bash(git branch --set-upstream-to=origin/main)"
     ],
     "deny": [
       "Read(./.env.local)",

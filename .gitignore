@@ -47,3 +47,6 @@ next-env.d.ts
 # Team deploy key (per-team, never commit)
 .deploy-key
 .deploy-key.pub
+
+# Team name written by the OZ HACK setup script
+.ozhack-team
