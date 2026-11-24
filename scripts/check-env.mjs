@@ -1,12 +1,12 @@
-// npm run check: verifies that the team's secret files are in place.
-import { existsSync, readFileSync } from "node:fs";
+// npm run check: verifies that the team's secret file is in place.
+// (The Anthropic key is not in this project: it is set once in the Claude app.)
 import { readEnvLocal, REQUIRED } from "./env.mjs";
 
-let ok = true;
 const env = readEnvLocal();
+let ok = true;
 
 if (!env) {
-  console.log("❌ חסר הקובץ .env.local. קבלו אותו מהמורה והעתיקו לתיקייה הראשית.");
+  console.log("❌ חסר הקובץ .env.local בתיקייה הראשית. פנו למורה.");
   ok = false;
 } else {
   for (const key of REQUIRED) {
@@ -16,19 +16,5 @@ if (!env) {
   }
 }
 
-const claudeSettings = ".claude/settings.local.json";
-let hasKey = false;
-if (existsSync(claudeSettings)) {
-  try {
-    hasKey = Boolean(
-      JSON.parse(readFileSync(claudeSettings, "utf8"))?.env?.ANTHROPIC_API_KEY,
-    );
-  } catch {
-    hasKey = false;
-  }
-}
-console.log(`${hasKey ? "✅" : "❌"} מפתח Claude Code (${claudeSettings})`);
-if (!hasKey) ok = false;
-
-console.log(ok ? "\nהכל מוכן 🚀" : "\nחסרים קבצים. פנו למורה.");
+console.log(ok ? "\nהכל מוכן 🚀" : "\nחסרים פרטים. פנו למורה.");
 process.exit(ok ? 0 : 1);

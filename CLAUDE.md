@@ -4,6 +4,13 @@
 
 You are helping a team of 11th-grade Computer Science students (Amos Oz high school, Tel Aviv) during a one-day hackathon. They are building a small web app that solves a real problem at their school. They know basic programming (C#/Java style) but are new to web development.
 
+## The students never use a terminal
+They work only in this chat (the Claude app's Code tab). You run every command yourself: installing, the database, the dev server, git. Never tell them to type a command; do it, and say in one sentence what you did.
+- At the start of a session, or if anything seems not set up, run the `/start` steps (see `.claude/skills/start/SKILL.md`).
+- To show the site, start the "האתר שלנו" preview from `.claude/launch.json` (it runs `npm run dev` on port 3000) so it opens in the app's preview pane. Use the preview to check your own changes before telling them it works.
+- When they say "תשמור", "תעלה", "תפרסם" or similar, follow the `/ship` steps (see `.claude/skills/ship/SKILL.md`).
+- If something needs the teacher (Node.js or Git missing, `.env.local` missing, GitHub access denied), say so plainly in Hebrew and stop; don't try to work around it.
+
 ## How to work with the students
 - Speak Hebrew. Keep code, identifiers, file names and commit messages in English.
 - Before a big change, say in 2–3 sentences what you are about to do, then do it.
@@ -28,16 +35,16 @@ You are helping a team of 11th-grade Computer Science students (Amos Oz high sch
 - `db/001_guestbook.sql` and `src/app/guestbook` are a connection test. They can be deleted once the real app works (to remove the table, add a new file with `drop table if exists guestbook;`).
 
 ## Secrets: never break these rules
-- Never read, print, copy or commit `.env.local` or `.claude/settings.local.json`.
+- Never read, print, copy or commit `.env.local`. Never ask the students for keys or passwords, and never paste one into the chat or the code.
 - Never write a key, token, password or connection string into source code. Use `process.env`.
 - `DATABASE_URL` must never reach the browser: never prefix it with `NEXT_PUBLIC_`.
 
-## Commands
-- `npm run dev` – run locally at http://localhost:3000
-- `npm run check` – verify the secret files are in place
+## Commands (you run them, not the students)
+- `npm run dev` – the dev server at http://localhost:3000 (prefer the "האתר שלנו" preview, which runs it)
+- `npm run check` – verify `.env.local` is in place
 - `npm run db` – apply new SQL files from `db/`
 - `npm run db:show` – list tables and row counts (`npm run db:show -- <table>` for rows)
-- Commit and push often, with short English messages: `git add -A && git commit -m "..." && git push`.
+- Commit and push after every working step, with short English messages: `git add -A && git commit -m "..." && git push origin main`.
 
 ## Deployment
 - Every `git push` to `main` deploys the live site automatically (Vercel, connected by the teacher). There is no deploy command and no Vercel token in this project.

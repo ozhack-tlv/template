@@ -11,7 +11,7 @@ export default function Home() {
         </p>
         <h1 className="text-4xl font-bold">האפליקציה שלנו עלתה לאוויר 🚀</h1>
         <p className="text-lg opacity-80">
-          זה דף פתיחה זמני. פתחו את Claude Code, ספרו לו איזו בעיה בבית הספר אתם
+          זה דף פתיחה זמני. ספרו ל-Claude איזו בעיה בבית הספר אתם
           פותרים, ותנו לו להחליף את הדף הזה.
         </p>
       </header>

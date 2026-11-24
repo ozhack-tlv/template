@@ -1,11 +1,28 @@
 {
   "model": "sonnet",
   "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git pull *)",
+      "Bash(git push)",
+      "Bash(git push origin main)",
+      "Bash(git config user.name *)",
+      "Bash(git config user.email *)"
+    ],
     "deny": [
       "Read(./.env.local)",
-      "Read(./.claude/settings.local.json)",
-      "Bash(git push --force:*)",
-      "Bash(git push -f:*)"
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(git branch -D *)"
     ]
   }
 }
