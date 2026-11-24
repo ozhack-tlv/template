@@ -25,12 +25,9 @@
 
 ## למורה: הכנת מחשב לצוות
 
-מה מותקן על המחשב (מתקינים גרפיים רגילים):
-- [אפליקציית Claude](https://claude.com/download)
-- [Node.js](https://nodejs.org) (גרסת LTS)
-- [Git](https://git-scm.com)
+על המחשב צריך להתקין **רק את אפליקציית Claude** ([claude.com/download](https://claude.com/download)). את Node.js ואת Git מתקין `/start` בעצמו, בתיקיית המשתמש (`~/.ozhack/tools`), בלי הרשאות אדמין. ב-Mac נפתח חלון של Apple להתקנת Command Line Tools, ולוחצים בו Install. אחרי ההתקנה הראשונה Claude יבקש לסגור ולפתוח את האפליקציה פעם אחת.
 
-הגדרת האפליקציה עם המפתח של הצוות, פעם אחת:
+הגדרת האפליקציה עם המפתח של הצוות, פעם אחת (או לחיצה כפולה על קובץ ההגדרות של הצוות, אם קיבלתם כזה):
 1. **Help → Troubleshooting → Enable Developer Mode** (האפליקציה תופעל מחדש)
 2. **Developer → Configure Third-Party Inference**
 3. ממלאים:
@@ -40,3 +37,5 @@
    - Gateway auth scheme: **x-api-key**
 
 התיקייה של הצוות (מה-ZIP שמכין המורה) כבר כוללת את הריפו המחובר לגיטהאב, את `.env.local` עם `DATABASE_URL`, ואת `.deploy-key`: מפתח שמאפשר לדחוף רק לריפו של הצוות. `/start` מחבר אותו לגיט אוטומטית.
+
+פורסים את ה-ZIP לתיקייה רגילה (למשל `Documents/OZHACK`), **לא** לתיקייה שמסונכרנת ל-OneDrive או ל-iCloud.
