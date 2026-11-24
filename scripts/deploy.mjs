@@ -10,14 +10,12 @@ if (missing.length) {
   process.exit(1);
 }
 
-const supabaseVars = [
-  "NEXT_PUBLIC_SUPABASE_URL",
-  "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+const args = [
+  "vercel", "deploy", "--prod", "--yes",
+  "--token", env.VERCEL_TOKEN,
+  "--build-env", `DATABASE_URL=${env.DATABASE_URL}`,
+  "--env", `DATABASE_URL=${env.DATABASE_URL}`,
 ];
-const args = ["vercel", "deploy", "--prod", "--yes", "--token", env.VERCEL_TOKEN];
-for (const key of supabaseVars) {
-  args.push("--build-env", `${key}=${env[key]}`, "--env", `${key}=${env[key]}`);
-}
 
 console.log("🚀 מעלה לאוויר... (בפעם הראשונה זה לוקח כמה דקות)");
 const result = spawnSync("npx", args, {

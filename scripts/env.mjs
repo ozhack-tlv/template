@@ -12,8 +12,14 @@ export function readEnvLocal() {
   return env;
 }
 
-export const REQUIRED = [
-  "NEXT_PUBLIC_SUPABASE_URL",
-  "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-  "VERCEL_TOKEN",
-];
+export const REQUIRED = ["DATABASE_URL", "VERCEL_TOKEN"];
+
+// Returns DATABASE_URL or exits with a clear Hebrew message.
+export function requireDatabaseUrl() {
+  const url = process.env.DATABASE_URL || readEnvLocal()?.DATABASE_URL;
+  if (!url) {
+    console.error("❌ חסר DATABASE_URL בקובץ .env.local. הריצו npm run check.");
+    process.exit(1);
+  }
+  return url;
+}

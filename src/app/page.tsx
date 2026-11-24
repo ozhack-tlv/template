@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { isSupabaseConfigured } from "@/lib/supabase";
+import { isDbConfigured } from "@/lib/db";
 
 // דף הבית של הצוות. Claude Code יחליף אותו באפליקציה שלכם.
 export default function Home() {
@@ -21,8 +21,8 @@ export default function Home() {
         <ul className="flex flex-col gap-1">
           <li>✅ האתר עובד</li>
           <li>
-            {isSupabaseConfigured ? "✅" : "❌"} מסד הנתונים (Supabase){" "}
-            {isSupabaseConfigured ? (
+            {isDbConfigured ? "✅" : "❌"} מסד הנתונים{" "}
+            {isDbConfigured ? (
               "מוגדר"
             ) : (
               <>

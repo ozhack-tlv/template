@@ -15,22 +15,28 @@ You are helping a team of 11th-grade Computer Science students (Amos Oz high sch
 ## Stack
 - Next.js (App Router) + TypeScript + Tailwind CSS, in `src/app`.
 - The UI is Hebrew and right-to-left (`dir="rtl"` is already set in `src/app/layout.tsx`). Use logical Tailwind classes (`ms-`, `me-`, `ps-`, `pe-`, `start-`, `end-`) instead of left/right.
-- Database: Supabase, through the client in `src/lib/supabase.ts`. Do not create another client.
+- Database: Postgres on Neon. Use the `sql` tagged template from `src/lib/db.ts` (Neon serverless driver). Do not create another client or add an ORM.
+- The database is reached only from the server: Server Components, Server Actions (`"use server"`) and Route Handlers. Never import `src/lib/db.ts` into a Client Component (`"use client"`); it is marked `server-only` and the build will fail.
+- Always pass values through `${...}` in the `sql` template (they become safe parameters). Never build SQL by string concatenation.
+- Cache Components is enabled (`cacheComponents: true`), so `export const dynamic` is not allowed. To read fresh data, put the reading code in an async component that calls `await connection()` (from `next/server`) and render it inside `<Suspense>`. After a write in a Server Action, call `revalidatePath(...)`.
+- See `src/app/guestbook` for the reference pattern (read in a Server Component, write in a Server Action).
 - No login system unless the team explicitly asks for one.
 
 ## Database changes
-- Write every new table or change as SQL in a new file under `supabase/` (for example `supabase/002_requests.sql`), with row level security enabled and explicit policies.
-- You cannot run SQL against the database. Tell the students to open Supabase → SQL Editor, paste the file and press Run, and wait for them to confirm.
-- `supabase/schema.sql` and `src/app/guestbook` are a connection test. They can be deleted once the real app works.
+- Every new table or change is a new SQL file in `db/` with the next number, for example `db/002_requests.sql`. Never edit a file that was already applied; add a new one instead.
+- Apply it yourself with `npm run db` (runs only files that were not applied yet, each in a transaction). Inspect data with `npm run db:show` or `npm run db:show -- <table>`.
+- `db/001_guestbook.sql` and `src/app/guestbook` are a connection test. They can be deleted once the real app works (to remove the table, add a new file with `drop table if exists guestbook;`).
 
 ## Secrets: never break these rules
 - Never read, print, copy or commit `.env.local` or `.claude/settings.local.json`.
-- Never write a key, token or password into source code. Use `process.env`.
-- Only `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` may reach the browser.
+- Never write a key, token, password or connection string into source code. Use `process.env`.
+- `DATABASE_URL` must never reach the browser: never prefix it with `NEXT_PUBLIC_`.
 
 ## Commands
 - `npm run dev` – run locally at http://localhost:3000
 - `npm run check` – verify the secret files are in place
+- `npm run db` – apply new SQL files from `db/`
+- `npm run db:show` – list tables and row counts (`npm run db:show -- <table>` for rows)
 - `npm run deploy` – publish to the live site (Vercel). Run `npm run build` first; fix any error before deploying.
 - Commit and push often, with short English messages: `git add -A && git commit -m "..." && git push`.
 - Never use `git push --force`, never rewrite history, never delete branches.
