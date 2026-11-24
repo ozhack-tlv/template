@@ -1,0 +1,11 @@
+{
+  "model": "sonnet",
+  "permissions": {
+    "deny": [
+      "Read(./.env.local)",
+      "Read(./.claude/settings.local.json)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
+    ]
+  }
+}

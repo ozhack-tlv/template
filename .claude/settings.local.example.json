@@ -1,0 +1,5 @@
+{
+  "env": {
+    "ANTHROPIC_API_KEY": "sk-ant-... (the real file comes from your teacher)"
+  }
+}
