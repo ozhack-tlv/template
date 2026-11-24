@@ -37,6 +37,11 @@ You are helping a team of 11th-grade Computer Science students (Amos Oz high sch
 - `npm run check` – verify the secret files are in place
 - `npm run db` – apply new SQL files from `db/`
 - `npm run db:show` – list tables and row counts (`npm run db:show -- <table>` for rows)
-- `npm run deploy` – publish to the live site (Vercel). Run `npm run build` first; fix any error before deploying.
 - Commit and push often, with short English messages: `git add -A && git commit -m "..." && git push`.
+
+## Deployment
+- Every `git push` to `main` deploys the live site automatically (Vercel, connected by the teacher). There is no deploy command and no Vercel token in this project.
+- Before pushing, run `npm run build` and fix every error: a broken build means the live site is not updated.
+- The live site's database is the same Neon database as in `.env.local`. Apply new `db/` files with `npm run db` before pushing code that depends on them.
+- If the students ask whether the site is live, tell them to check the green check mark next to the latest commit on the team's GitHub page.
 - Never use `git push --force`, never rewrite history, never delete branches.

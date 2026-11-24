@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "node scripts/deploy.mjs",
     "check": "node scripts/check-env.mjs",
     "db": "node scripts/db.mjs",
     "db:show": "node scripts/db-show.mjs"

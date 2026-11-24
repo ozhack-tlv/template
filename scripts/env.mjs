@@ -12,7 +12,7 @@ export function readEnvLocal() {
   return env;
 }
 
-export const REQUIRED = ["DATABASE_URL", "VERCEL_TOKEN"];
+export const REQUIRED = ["DATABASE_URL"];
 
 // Returns DATABASE_URL or exits with a clear Hebrew message.
 export function requireDatabaseUrl() {
